@@ -53,14 +53,14 @@ Additionally, they have a lot of problems with decoupling, e.g. mixing business 
 
 ## To do list
 
-[ ] Set up basic UI
-[ ] Set up builds to work fully correct
-[ ] Implement React Hot Loader
-[ ] Implement building full HTML structure
-[ ] Prepare example application based on it
-[ ] Set up all basic assets handling
-[ ] Hide errors on production
-[ ] Prepare unit tests
-[ ] Handle promises as asynchronous actions
-[ ] Prepare branches with some advanced boilerplates, e.g. with translations or `redux-saga`
-[ ] Set up basic API client
+- [ ] Set up basic UI
+- [ ] Set up builds to work fully correct
+- [ ] Implement React Hot Loader
+- [ ] Implement building full HTML structure
+- [ ] Prepare example application based on it
+- [ ] Set up all basic assets handling
+- [ ] Hide errors on production
+- [ ] Prepare unit tests
+- [ ] Handle promises as asynchronous actions
+- [ ] Prepare branches with some advanced boilerplates, e.g. with translations or `redux-saga`
+- [ ] Set up basic API client
