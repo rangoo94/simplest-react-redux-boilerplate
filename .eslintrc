@@ -1,0 +1,16 @@
+{
+  "extends": "standard",
+
+  "rules": {
+    "space-before-function-paren": 0,
+    "quotes": [ 2, "single", { "avoidEscape": true, "allowTemplateLiterals": true } ]
+  },
+
+  "globals": {
+    "JSON": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "it": true,
+    "describe": true
+  }
+}
