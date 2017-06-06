@@ -7,15 +7,15 @@ import createStore from './base/create-store'
 
 import * as logic from './logic'
 
-function dispatchApplication(url, data = {}) {
-    // Initialize store
-    const store = createStore(logic.reducers, logic.effects, data)
+function dispatchApplication (url, data = {}) {
+  // Initialize store
+  const store = createStore(logic.reducers, logic.effects, data)
 
-    // Initialize application
-    const app = createApplication(store)
+  // Initialize application
+  const app = createApplication(store)
 
-    // Dispatch application
-    return app.dispatch(url)
+  // Dispatch application
+  return app.dispatch(url)
 }
 
 export default dispatchApplication

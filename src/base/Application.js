@@ -2,52 +2,52 @@ import React from 'react'
 import { render } from 'react-redux-async-render'
 
 class Application {
-    constructor(store) {
-        this.store = store
-    }
+  constructor (store) {
+    this.store = store
+  }
 
-    destroy() {
-        this.store.async.clear()
-        this.store.repeat.clear()
-    }
+  destroy () {
+    this.store.async.clear()
+    this.store.repeat.clear()
+  }
 
-    dispatch(url) {
-        this.setUrl(url)
+  dispatch (url) {
+    this.setUrl(url)
 
-        return new Promise(resolve => {
-            const finish = (result, err) => {
-                this.destroy()
+    return new Promise(resolve => {
+      const finish = (result, err) => {
+        this.destroy()
 
-                if (!result || !result.html) {
-                    if (err instanceof Error) {
-                        throw err
-                    }
+        if (!result || !result.html) {
+          if (err instanceof Error) {
+            throw err
+          }
 
-                    throw new Error('Something wrong happened')
-                }
+          throw new Error('Something wrong happened')
+        }
 
-                resolve(result)
-            }
+        resolve(result)
+      }
 
-            render(finish, {
-                store: this.store,
-                createVirtualDom: () => this.vdom(),
-                asyncMiddleware: this.store.async,
-                repeatMiddleware: this.store.repeat,
-                tries: 1
-            })
-        })
-    }
+      render(finish, {
+        store: this.store,
+        createVirtualDom: () => this.vdom(),
+        asyncMiddleware: this.store.async,
+        repeatMiddleware: this.store.repeat,
+        tries: 1
+      })
+    })
+  }
 
-    setUrl(url) {
-        this.url = url
-    }
+  setUrl (url) {
+    this.url = url
+  }
 
-    vdom() {
-        return (
-            <div />
-        )
-    }
+  vdom () {
+    return (
+      <div />
+    )
+  }
 }
 
 export default Application

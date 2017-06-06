@@ -2,8 +2,18 @@
   "extends": "standard",
 
   "rules": {
-    "space-before-function-paren": 0,
-    "quotes": [ 2, "single", { "avoidEscape": true, "allowTemplateLiterals": true } ]
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error"
+  },
+
+  "plugins": [
+    "react"
+  ],
+
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
 
   "globals": {

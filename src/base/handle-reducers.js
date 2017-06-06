@@ -4,13 +4,13 @@
  * @param {object} reducers
  */
 const handleReducers = reducers => (state, action) => {
-    state = state || {}
+  state = state || {}
 
-    if (reducers[action.type]) {
-        return reducers[action.type](state, action)
-    }
+  if (reducers[action.type]) {
+    return reducers[action.type](state, action)
+  }
 
-    return state
+  return state
 }
 
 export default handleReducers

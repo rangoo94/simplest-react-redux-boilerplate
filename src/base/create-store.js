@@ -3,40 +3,42 @@ import { createIgnoreNodeMiddleware, createAsyncMiddleware, createRepeatMiddlewa
 import { createMiddleware as createEffectsMiddleware } from 'redux-simple-effects'
 import handleReducers from '../base/handle-reducers'
 
-function finalCreateStore(reducers, effects, data = {}) {
-    // Handle asynchronous actions on server side
+function finalCreateStore (reducers, effects, data = {}) {
+  // Handle asynchronous actions on server side
 
-    const ignoreNodeMiddleware = createIgnoreNodeMiddleware()
-    const asyncMiddleware = createAsyncMiddleware()
-    const repeatMiddleware = createRepeatMiddleware()
+  const ignoreNodeMiddleware = createIgnoreNodeMiddleware()
+  const asyncMiddleware = createAsyncMiddleware()
+  const repeatMiddleware = createRepeatMiddleware()
 
-    // Set up simple effects middleware
+  // Set up simple effects middleware
 
-    const effectsMiddleware = createEffectsMiddleware(effects)
+  const effectsMiddleware = createEffectsMiddleware(effects)
 
-    const middlewares = applyMiddleware(
-        repeatMiddleware,
-        ignoreNodeMiddleware,
-        asyncMiddleware,
-        effectsMiddleware
-    )
+  const middlewares = applyMiddleware(
+    repeatMiddleware,
+    ignoreNodeMiddleware,
+    asyncMiddleware,
+    effectsMiddleware
+  )
 
-    // Initialize store
+  // Initialize store
 
-    Object.keys(reducers).forEach(key => reducers[key] = handleReducers(reducers[key]))
+  Object.keys(reducers).forEach(key => {
+    reducers[key] = handleReducers(reducers[key])
+  })
 
-    const store = createStore(
-        combineReducers(reducers),
-        data,
-        compose(middlewares)
-    )
+  const store = createStore(
+    combineReducers(reducers),
+    data,
+    compose(middlewares)
+  )
 
-    // Expose async & repeat middlewares
+  // Expose async & repeat middlewares
 
-    store.async = asyncMiddleware
-    store.repeat = repeatMiddleware
+  store.async = asyncMiddleware
+  store.repeat = repeatMiddleware
 
-    return store
+  return store
 }
 
 export default finalCreateStore
