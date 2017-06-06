@@ -7,8 +7,8 @@ class Application {
     }
 
     destroy() {
-        this.store.async.destroy()
-        this.store.repeat.destroy()
+        this.store.async.clear()
+        this.store.repeat.clear()
     }
 
     dispatch(url) {
@@ -31,7 +31,7 @@ class Application {
 
             render(finish, {
                 store: this.store,
-                createVirtualDom: () => app.vdom(),
+                createVirtualDom: () => this.vdom(),
                 asyncMiddleware: this.store.async,
                 repeatMiddleware: this.store.repeat,
                 tries: 1

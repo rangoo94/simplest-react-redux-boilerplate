@@ -59,20 +59,9 @@ if (!IS_PRODUCTION) {
 
 const render = IS_PRODUCTION ? require('./render') : (...args) => require('./render')(...args)
 
-const DEV_PATHS = [
-    __dirname,
-    path.resolve(path.join(__dirname, '..'))
-]
-
-function clearCache() {
-    Object.keys(require.cache).forEach(key => {
-        if (DEV_PATHS.find(p => key.substr(0, p.length) === p)) {
-            delete require.cache[key]
-        }
-    })
-}
-
 if (!IS_PRODUCTION) {
+    const clearCache = require('./clear-cache')
+
     app.get('*', (req, res, next) => {
         clearCache()
         next()

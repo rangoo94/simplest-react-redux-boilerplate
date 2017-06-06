@@ -1,4 +1,4 @@
-import dispatchApplication from '../index';
+import dispatchApplication from '../index'
 
 const handleError = res => err => {
     if (err instanceof Error) {
