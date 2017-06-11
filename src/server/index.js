@@ -39,13 +39,14 @@ if (!IS_PRODUCTION) {
   const hotMiddleware = require('webpack-hot-middleware')
   const config = require('../../webpack.config')
 
-  const compiler = webpack(config({ prod: IS_PRODUCTION }))
+  const compiler = webpack(config)
 
   const devConfig = {
     quiet: false,
     noInfo: true,
     progress: true,
-    publicPath: '/static/'
+    hot: true,
+    publicPath: '/'
   }
 
   app.use(devMiddleware(compiler, devConfig))

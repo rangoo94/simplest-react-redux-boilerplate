@@ -1,6 +1,8 @@
 // Load libraries
 
+import React from 'react'
 import { render } from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 
 // Load application & configuration
 
@@ -17,7 +19,7 @@ const actions = window.$actions || []
 
 // Prepare application
 
-const app = prepareApplication(location.href, state)
+let app = prepareApplication(location.href, state)
 
 // Run browser-only actions
 
@@ -27,4 +29,23 @@ for (let action of actions) {
 
 // Render application to DOM tree
 
-render(app.vdom(), element)
+function build () {
+  const vdom = process.env.NODE_ENV === 'production' ? app.vdom() : (
+    <AppContainer>
+      { app.vdom() }
+    </AppContainer>
+  )
+
+  render(vdom, element)
+}
+
+build()
+
+if (process.env.NODE_ENV !== 'production' && module.hot) {
+  // Accept bootstrap file
+  module.hot.accept()
+
+  // Set up hot replacement for UI
+
+  module.hot.accept('./ui/index', build)
+}

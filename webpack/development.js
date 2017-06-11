@@ -5,7 +5,11 @@ const BASE_PATH = path.join(__dirname, '../')
 const STATIC_PATH = path.join(__dirname, '/static/')
 
 const entry = {
-  'index.js': './src/index.js',
+  'index.js': [
+    'webpack-hot-middleware/client',
+    'react-hot-loader/patch',
+    './src/index.js'
+  ],
   'vendor.js': [ 'react', 'redux' ]
 }
 
@@ -49,7 +53,8 @@ const plugins = [
     }
   }),
   new webpack.NamedModulesPlugin(),
-  new webpack.HotModuleReplacementPlugin()
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoEmitOnErrorsPlugin()
 ]
 
 module.exports = {
