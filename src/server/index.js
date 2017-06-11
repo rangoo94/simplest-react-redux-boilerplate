@@ -44,7 +44,8 @@ if (!IS_PRODUCTION) {
   const devConfig = {
     quiet: false,
     noInfo: true,
-    progress: true
+    progress: true,
+    publicPath: '/static/'
   }
 
   app.use(devMiddleware(compiler, devConfig))
@@ -69,12 +70,10 @@ app.get('*', render)
 
 // Start listening
 
-const listener = err => {
+app.listen(HTTP_PORT, HTTP_INTERFACE, err => {
   if (err) {
     return console.error(err)
   }
 
   console.info('Listening at %s:%s', HTTP_INTERFACE, HTTP_PORT)
-}
-
-app.listen(HTTP_PORT, HTTP_INTERFACE, listener)
+})

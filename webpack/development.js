@@ -2,11 +2,11 @@ const webpack = require('webpack')
 const path = require('path')
 
 const BASE_PATH = path.join(__dirname, '../')
-const STATIC_PATH = path.join(__dirname, '../static/')
+const STATIC_PATH = path.join(__dirname, '/static/')
 
 const entry = {
-  js: './src/index.js',
-  vendor: [ 'react', 'redux' ]
+  'index.js': './src/index.js',
+  'vendor.js': [ 'react', 'redux' ]
 }
 
 const rules = [
@@ -16,7 +16,7 @@ const rules = [
     use: {
       loader: 'file-loader',
       query: {
-        name: '[name].[ext]'
+        name: '[name]'
       }
     }
   },
@@ -58,7 +58,7 @@ module.exports = {
   entry: entry,
   output: {
     path: STATIC_PATH,
-    filename: '[name].js'
+    filename: '[name]'
   },
   module: {
     rules: rules

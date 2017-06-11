@@ -4,6 +4,10 @@ import { createMiddleware as createEffectsMiddleware } from 'redux-simple-effect
 import handleReducers from '../base/handle-reducers'
 
 function finalCreateStore (reducers, effects, data = {}) {
+  // Set up shared data for side effects
+
+  const shared = {}
+
   // Handle asynchronous actions on server side
 
   const ignoreNodeMiddleware = createIgnoreNodeMiddleware()
@@ -12,7 +16,7 @@ function finalCreateStore (reducers, effects, data = {}) {
 
   // Set up simple effects middleware
 
-  const effectsMiddleware = createEffectsMiddleware(effects)
+  const effectsMiddleware = createEffectsMiddleware(effects, shared)
 
   const middlewares = applyMiddleware(
     repeatMiddleware,
@@ -33,8 +37,9 @@ function finalCreateStore (reducers, effects, data = {}) {
     compose(middlewares)
   )
 
-  // Expose async & repeat middlewares
+  // Expose shared data, async & repeat middlewares
 
+  store.shared = shared
   store.async = asyncMiddleware
   store.repeat = repeatMiddleware
 

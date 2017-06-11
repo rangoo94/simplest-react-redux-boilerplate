@@ -1,21 +1,30 @@
-// Set up factories
+// Load libraries
 
-import createApplication from './base/create-application'
-import createStore from './base/create-store'
+import { render } from 'react-dom'
 
-// Set up effects & reducers
+// Load application & configuration
 
-import * as logic from './logic'
+import prepareApplication from './prepare-application'
+import buildInitialState from './config/build-initial-state'
 
-function dispatchApplication (url, data = {}) {
-  // Initialize store
-  const store = createStore(logic.reducers, logic.effects, data)
+// Set up variables
 
-  // Initialize application
-  const app = createApplication(store)
+const element = document.getElementById('app')
 
-  // Dispatch application
-  return app.dispatch(url)
+const location = window.location
+const state = window.$state || buildInitialState()
+const actions = window.$actions || []
+
+// Prepare application
+
+const app = prepareApplication(location.href, state)
+
+// Run browser-only actions
+
+for (let action of actions) {
+  app.store.dispatch(action)
 }
 
-export default dispatchApplication
+// Render application to DOM tree
+
+render(app.vdom(), element)

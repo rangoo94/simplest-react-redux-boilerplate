@@ -1,52 +1,31 @@
-import React from 'react'
-import { render } from 'react-redux-async-render'
-
+/**
+ * Application instance, to store data per user session
+ */
 class Application {
-  constructor (store) {
+  /**
+   * @param {object} store
+   * @param {function} vdom
+   */
+  constructor (store, vdom) {
     this.store = store
+    this.vdom = vdom.bind(null, this)
   }
 
+  /**
+   * Destroy application to remove garbage
+   */
   destroy () {
     this.store.async.clear()
     this.store.repeat.clear()
   }
 
-  dispatch (url) {
-    this.setUrl(url)
-
-    return new Promise(resolve => {
-      const finish = (result, err) => {
-        this.destroy()
-
-        if (!result || !result.html) {
-          if (err instanceof Error) {
-            throw err
-          }
-
-          throw new Error('Something wrong happened')
-        }
-
-        resolve(result)
-      }
-
-      render(finish, {
-        store: this.store,
-        createVirtualDom: () => this.vdom(),
-        asyncMiddleware: this.store.async,
-        repeatMiddleware: this.store.repeat,
-        tries: 1
-      })
-    })
-  }
-
+  /**
+   * Set current URL of application
+   *
+   * @param {string} url
+   */
   setUrl (url) {
     this.url = url
-  }
-
-  vdom () {
-    return (
-      <div />
-    )
   }
 }
 
