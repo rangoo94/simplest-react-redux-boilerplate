@@ -15,12 +15,8 @@ const stylesheets = [
  */
 const buildInitialState = () => ({
   app: {
-    title: 'Some example',
     javascripts: javascripts,
-    stylesheets: stylesheets,
-    meta: {
-      keywords: 'something, else, it is example'
-    }
+    stylesheets: stylesheets
   }
 })
 

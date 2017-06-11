@@ -1,7 +1,3 @@
-export const reducers = {
+export const reducers = require('./reducers')
 
-}
-
-export const effects = {
-
-}
+export const effects = require('./effects')

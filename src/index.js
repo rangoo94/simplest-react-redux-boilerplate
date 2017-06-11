@@ -21,6 +21,8 @@ const actions = window.$actions || []
 
 let app = prepareApplication(location.href, state)
 
+window.app = app
+
 // Run browser-only actions
 
 for (let action of actions) {
@@ -46,6 +48,5 @@ if (process.env.NODE_ENV !== 'production' && module.hot) {
   module.hot.accept()
 
   // Set up hot replacement for UI
-
   module.hot.accept('./ui/index', build)
 }

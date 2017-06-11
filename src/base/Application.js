@@ -18,15 +18,6 @@ class Application {
     this.store.async.clear()
     this.store.repeat.clear()
   }
-
-  /**
-   * Set current URL of application
-   *
-   * @param {string} url
-   */
-  setUrl (url) {
-    this.url = url
-  }
 }
 
 export default Application
