@@ -4,10 +4,12 @@
 class Application {
   /**
    * @param {object} store
+   * @param {object} router
    * @param {function} vdom
    */
-  constructor (store, vdom) {
+  constructor (store, router, vdom) {
     this.store = store
+    this.router = router
     this.vdom = vdom.bind(null, this)
   }
 

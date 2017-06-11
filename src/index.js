@@ -19,7 +19,7 @@ const actions = window.$actions || []
 
 // Prepare application
 
-let app = prepareApplication(location.href, state)
+const app = prepareApplication(location.pathname + (location.search || ''), state)
 
 window.app = app
 
@@ -48,5 +48,6 @@ if (process.env.NODE_ENV !== 'production' && module.hot) {
   module.hot.accept()
 
   // Set up hot replacement for UI
-  module.hot.accept('./ui/index', build)
+  module.hot.accept('./components/app', build)
+  module.hot.accept('./containers/index', build)
 }

@@ -2,6 +2,10 @@
 
 import React from 'react'
 
+// Load configuration
+
+import routes from './config/routes.json'
+
 // Set up factories
 
 import createApplication from './base/create-application'
@@ -13,10 +17,10 @@ import * as logic from './logic'
 
 // Load UI
 
-import Base from './ui/index'
+import App from './containers/index'
 
 function render (app) {
-  return <Base />
+  return <App app={ app } />
 }
 
 // Load basic logic
@@ -32,7 +36,7 @@ function prepareApplication (url, data = {}) {
   const store = createStore(logic.reducers, logic.effects, data)
 
   // Initialize application
-  const app = createApplication(store, render)
+  const app = createApplication(store, routes, render)
 
   // Make application instance available for effects
   store.shared.app = app
@@ -41,7 +45,7 @@ function prepareApplication (url, data = {}) {
   const state = store.getState()
 
   if (!state.app.title) {
-    app.store.dispatch(setTitle('Simplest React Redux'))
+    app.store.dispatch(setTitle('Simplest iiReact Redux'))
   }
 
   if (!state.app.meta) {

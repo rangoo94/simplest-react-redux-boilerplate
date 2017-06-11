@@ -1,0 +1,8 @@
+{
+  "/homepage": "homepage",
+
+  "/error/:code": "error",
+  "/error": "error",
+
+  "/": "homepage"
+}

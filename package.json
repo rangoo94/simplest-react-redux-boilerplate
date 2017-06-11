@@ -28,8 +28,10 @@
     "event-emitter": "^0.3.5",
     "express": "^4.14.1",
     "helmet": "^3.4.0",
+    "prop-types": "^15.5.10",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-redux": "^5.0.5",
     "react-redux-async-render": "^0.1.4",
     "redux": "^3.6.0",
     "redux-simple-effects": "^0.1.2"

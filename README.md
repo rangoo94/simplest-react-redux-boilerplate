@@ -30,7 +30,7 @@ Effects are side effects which are fired after after some action on application 
 
 ### User Interface
 
-Just set up everything in `src/ui` directory. For loading data, take a look at `Asynchronous actions` section below.
+Just set up everything in `src/components` and `src/containers` directories. For loading data, take a look at `Asynchronous actions` section below.
 
 ## What you should think about?
 
