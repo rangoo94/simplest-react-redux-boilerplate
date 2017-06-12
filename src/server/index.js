@@ -4,8 +4,15 @@
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
-const HTTP_PORT = process.env.HTTP_PORT = process.env.HTTP_PORT || 3030
-const HTTP_INTERFACE = process.env.HTTP_INTERFACE = process.env.HTTP_INTERFACE || 'localhost'
+if (!process.env.HTTP_PORT) {
+  process.env.HTTP_PORT = 3030
+}
+
+if (!process.env.HTTP_INTERFACE) {
+  process.env.HTTP_INTERFACE = 'localhost'
+}
+
+const { HTTP_INTERFACE, HTTP_PORT } = process.env
 
 // Set up Babel parsing in runtime for development version
 
