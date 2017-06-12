@@ -1,3 +1,5 @@
+import qs from 'query-string'
+
 export function parseQueryString (qs) {
   let result = {}
 
@@ -13,15 +15,28 @@ export function parseQueryString (qs) {
   return result
 }
 
+/**
+ * Build query string from object
+ *
+ * @param {object} data
+ * @returns {string}
+ */
 export function buildQueryString (data) {
-  if (!data) {
-    return ''
+  data = Object.assign({}, data)
+
+  for (let key of Object.keys(data)) {
+    if (!data[key] || typeof data[key] !== 'object' || Array.isArray(data[key])) {
+      continue
+    }
+
+    for (let inner of Object.keys(data[key])) {
+      data[`${key}[${inner}]`] = data[key][inner]
+    }
+
+    delete data[key]
   }
 
-  return Object.keys(data)
-    .filter(key => data[key] != null)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&')
+  return qs.stringify(data)
 }
 
 export function parse (url) {

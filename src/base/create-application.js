@@ -1,5 +1,6 @@
 import Application from './Application'
 import Router from '../utils/router'
+import ApiClient from '../utils/api-client'
 
 /**
  * Factory for application instance
@@ -7,10 +8,16 @@ import Router from '../utils/router'
  *
  * @param {object} store
  * @param {object} routes
+ * @param {string} apiUrl
  * @param {function} vdom
  */
-const createApplication = (store, routes, vdom) => {
-  return new Application(store, new Router(routes), vdom)
+const createApplication = (store, routes, apiUrl, vdom) => {
+  return new Application(
+    store,
+    new Router(routes),
+    new ApiClient(apiUrl),
+    vdom
+  )
 }
 
 export default createApplication

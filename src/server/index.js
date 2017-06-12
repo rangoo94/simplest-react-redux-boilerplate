@@ -31,6 +31,10 @@ app.use(cookieParser())
 
 app.use(helmet())
 
+// Set up API
+
+app.use('/api', require('./api'))
+
 // Prepare webpack compiler
 
 if (!IS_PRODUCTION) {

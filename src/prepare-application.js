@@ -35,8 +35,12 @@ function prepareApplication (url, data = {}) {
   // Initialize store
   const store = createStore(logic.reducers, logic.effects, data)
 
+  // Initialize API url
+  const apiUrl = typeof window !== 'undefined'
+    ? '/api' : `http://${process.env.HTTP_INTERFACE}:${process.env.HTTP_PORT}/api`
+
   // Initialize application
-  const app = createApplication(store, routes, render)
+  const app = createApplication(store, routes, apiUrl, render)
 
   // Make application instance available for effects
   store.shared.app = app
