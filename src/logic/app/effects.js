@@ -3,10 +3,17 @@ import History from '../../utils/history'
 import { remove } from '../../utils/dom'
 
 /**
+ * Get current location in browser
+ */
+const getLocation = () => window.location.pathname + (window.location.search || '')
+
+/**
  * Set current page URL to the one which is in app state
  */
 export const APP_REDIRECT = browserOnly(({ url }, dispatch, state) => {
-  History.pushState(null, state.app.title, url)
+  if (getLocation() !== url) {
+    History.pushState(null, state.app.title, url)
+  }
 })
 
 /**

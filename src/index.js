@@ -17,9 +17,19 @@ const location = window.location
 const state = window.$state || buildInitialState()
 const actions = window.$actions || []
 
+const getLocation = () => location.pathname + (location.search || '')
+
 // Prepare application
 
-const app = prepareApplication(location.pathname + (location.search || ''), state)
+const app = prepareApplication(getLocation(), state)
+
+// Set up routing
+
+import { redirect } from './logic/app/actions'
+
+window.onpopstate = (...args) => app.store.dispatch(redirect(getLocation()))
+
+// Debug application
 
 window.app = app
 

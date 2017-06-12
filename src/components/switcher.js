@@ -48,7 +48,7 @@ class Switcher extends React.Component {
 Switcher.propTypes = {
   props: PropTypes.object,
   active: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  children: PropTypes.oneOfType([ PropTypes.object, PropTypes.array ])
 }
 
 Switcher.defaultProps = {
